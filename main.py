@@ -1,6 +1,7 @@
 from MODELOS.bolo import Bolo
 from MODELOS.venda import Venda
 from CAIXA.caixa import realizar_venda
+from HISTORICO.historico import menu_historico
 
 
 bolos = [
@@ -11,4 +12,33 @@ bolos = [
 vendas=[]
 
 
-realizar_venda(bolos,vendas)
+
+
+while True:
+    print("\n\n========== SISTEMA DE CONFEITARIA ==========")
+    print("1 - Cozinha")
+    print("2 - Estoque")
+    print("3 - Caixa")
+    print("4 - Histórico")
+    print("0 - Sair")
+
+    opcao = input("\nEscolha uma opção: ")
+
+    if opcao == "1":
+        print("cozinha")
+    elif opcao == "2":
+        print("estoque")
+
+    elif opcao == "3":
+        realizar_venda(bolos,vendas)
+
+    elif opcao == "4":
+        menu_historico(vendas)
+
+    elif opcao == "0":
+        print("\nSistema encerrado.")
+        break
+        
+
+    else:
+        print("\nOpção inválida.")
