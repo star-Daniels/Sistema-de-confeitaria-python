@@ -6,13 +6,13 @@ def calcular_faturamento(vendas):
     total_vendas=0
     for venda in vendas:
         total_vendas += venda.total
-    return total_vendas
+    print(f"Valor total : {total_vendas} \n")
 
 def qtd_bolos_vendidos(vendas):
     total_bolos_vendidos=0
     for venda in vendas:
         total_bolos_vendidos += venda.quantidade
-    return total_bolos_vendidos
+    print(f"Quantidade total de bolos vendidos : {total_bolos_vendidos} \n")
 
 def menu_historico(vendas):
     escolha =1
@@ -27,12 +27,12 @@ def menu_historico(vendas):
         escolha = int(input("\nEscolha uma opção: "))
         
         if escolha == 1:
-            listar_vendas()
+            listar_vendas(vendas)
         elif escolha ==2:
-            calcular_faturamento()
+            calcular_faturamento(vendas)
             
         elif escolha == 3:
-            qtd_bolos_vendidos()
+            qtd_bolos_vendidos(vendas)
         elif escolha == 0:
             print("Saindo\n\n")
            
