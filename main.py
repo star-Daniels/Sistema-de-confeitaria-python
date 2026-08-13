@@ -1,6 +1,6 @@
 from MODELOS.bolo import Bolo
 from MODELOS.venda import Venda
-from CAIXA.caixa import realizar_venda
+from CAIXA.caixa import menu_caixa
 from HISTORICO.historico import menu_historico
 
 
@@ -30,7 +30,7 @@ while True:
         print("estoque")
 
     elif opcao == "3":
-        realizar_venda(bolos,vendas)
+        menu_caixa(bolos, vendas)
 
     elif opcao == "4":
         menu_historico(vendas)

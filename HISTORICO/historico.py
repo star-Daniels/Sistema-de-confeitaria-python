@@ -1,17 +1,26 @@
 def listar_vendas(vendas):
+    id = 1
     for venda in vendas:
-        print(f"{venda.bolo.nome} - {venda.quantidade} | {venda.total}\n")
+        
+        print(f"==========VENDA | {id}\n")
+        id += 1
+        for item in venda.itens:
+            print(f"{item.bolo.nome} - {item.quantidade} | R$ {item.total}\n_________\n")
         
 def calcular_faturamento(vendas):
     total_vendas=0
     for venda in vendas:
-        total_vendas += venda.total
-    print(f"Valor total : {total_vendas} \n")
+        for item in venda.itens:
+          total_vendas += item.total  
+        
+    print(f"\nValor total : {total_vendas} \n")
 
 def qtd_bolos_vendidos(vendas):
     total_bolos_vendidos=0
     for venda in vendas:
-        total_bolos_vendidos += venda.quantidade
+        for item in venda.itens:
+            
+            total_bolos_vendidos += item.quantidade
     print(f"Quantidade total de bolos vendidos : {total_bolos_vendidos} \n")
 
 def menu_historico(vendas):
