@@ -31,7 +31,7 @@ def listar_estoque():
 
 if __name__ == "__main__":
     while True:
-        opcao = input(" 1-Abrir Estoque\n 2-Adcionar item\n 3-Remover Item\n 4-Sair\n")
+        opcao = input(" 1-Listar Estoque\n 2-Adcionar item\n 3-Remover Item\n 4-Sair\n")
         match opcao: 
             case "1":
                 print("Abrindo Estoque")   
