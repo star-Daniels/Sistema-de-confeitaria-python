@@ -1,4 +1,5 @@
 from MODELOS.bolo import Bolo
+
 from MODELOS.venda import Venda
 from CAIXA.caixa import menu_caixa
 from HISTORICO.historico import menu_historico
