@@ -50,33 +50,33 @@ def buscar_bolo():
         if bolo.nome == nome:
             return bolo
     return None
-
-opcao = input(" 1-Listar Bolos\n 2-Adicionar Bolo\n 3-Remover Bolo\n 4-Editar Bolo\n 5-Sair")
-match opcao:
-    case "1":
-        listar_bolos()
-    case "2":
-        add_bolo()
-    case "3":
-        remover_bolo()
-    case "4":
-        bolo = buscar_bolo()
-        if not bolo:
-            print("Bolo nao Encontrado")
-        else:
-            sub_opcao = input(" 1-Ver lista de Ingredientes\n 2-Adicionar Ingredientes\n 3-Remover Ingredientes\n 4-Sair\n")
-            match sub_opcao:
-                case "1":
-                    print(bolo.ingredientes)
-                case "2":
-                    add_item(bolo)
-                case "3":
-                    remover_item(bolo)
-                case "4":
-                    print("Saindo...")
-                case _:
-                    print("Opcao Invalida")
-    case "5":
-        print("Saindo...")
-    case _:
-        print("Opcao Invalida")
+def menu_cozinha() :
+    opcao = input(" 1-Listar Bolos\n 2-Adicionar Bolo\n 3-Remover Bolo\n 4-Editar Bolo\n 5-Sair")
+    match opcao:
+        case "1":
+            listar_bolos()
+        case "2":
+            add_bolo()
+        case "3":
+            remover_bolo()
+        case "4":
+            bolo = buscar_bolo()
+            if not bolo:
+                print("Bolo nao Encontrado")
+            else:
+                sub_opcao = input(" 1-Ver lista de Ingredientes\n 2-Adicionar Ingredientes\n 3-Remover Ingredientes\n 4-Sair\n")
+                match sub_opcao:
+                    case "1":
+                        print(bolo.ingredientes)
+                    case "2":
+                        add_item(bolo)
+                    case "3":
+                        remover_item(bolo)
+                    case "4":
+                        print("Saindo...")
+                    case _:
+                        print("Opcao Invalida")
+        case "5":
+            print("Saindo...")
+        case _:
+            print("Opcao Invalida")
