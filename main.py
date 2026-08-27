@@ -1,11 +1,6 @@
 from MODELOS.bolo import Bolo
-<<<<<<< Updated upstream
-
-from MODELOS.venda import Venda
-=======
 from MODELOS.usuario import Usuario
 from MODELOS.venda import Venda 
->>>>>>> Stashed changes
 from CAIXA.caixa import menu_caixa
 from HISTORICO.historico import menu_historico
 from LOGIN.login import cadastrar_user, realizar_login
