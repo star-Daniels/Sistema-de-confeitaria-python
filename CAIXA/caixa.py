@@ -152,8 +152,9 @@ def realizar_venda(bolos, vendas):
 
         for item in itens_venda:
             item.bolo.estoque -= item.quantidade
+            
 
-        venda = Venda(itens_venda)
+        venda = Venda(itens_venda, total_venda)
 
         vendas.append(venda)
 
