@@ -6,6 +6,28 @@ def listar_vendas(vendas):
         id += 1
         for item in venda.itens:
             print(f"{item.bolo.nome} - {item.quantidade} | R$ {item.total}\n_________\n")
+
+def listar_vendas_por_valor(vendas):
+
+    for i in range(len(vendas)):
+        maior = i
+
+        for j in range(i + 1, len(vendas)):
+
+            if vendas[j].preco_total > vendas[maior].preco_total:
+                maior = j
+
+        vendas[i], vendas[maior] = vendas[maior], vendas[i]
+
+    id = 1
+
+    for venda in vendas:
+        print(f"{id} - R$ {venda.preco_total:.2f}")
+        id += 1
+        
+        
+        
+    
         
 def calcular_faturamento(vendas):
     total_vendas=0
