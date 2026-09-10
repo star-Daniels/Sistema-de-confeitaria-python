@@ -1,42 +1,62 @@
+
 from MODELOS.venda import Venda
 from MODELOS.item_venda import ItemVenda
+from COZINHA.cozinha import quantidade_bolos_possiveis, retirar_ingredientes
 
 
 def listar_bolos(bolos):
+
     print("\nBolos disponíveis\n")
 
     for bolo in bolos:
+
+        quantidade = quantidade_bolos_possiveis(bolo)
+
         print(
-            f"{bolo.id} - {bolo.nome} : R${bolo.preco} | "
-            f"qtd: {bolo.estoque}\n"
-            "_________\n"
+            f"{bolo.nome} : R${bolo.preco:.2f} | "
+            f"qtd: {quantidade}\n"
+            "_________________\n"
         )
 
 
 def definir_quantidade(bolo):
+
+    quantidade_disponivel = quantidade_bolos_possiveis(bolo)
+
+    if quantidade_disponivel == 0:
+
+        print("Ingredientes insuficientes.")
+        return None
+
     quantidade = int(input("\nDigite a quantidade: "))
 
     if quantidade <= 0:
+
         print("A quantidade deve ser maior que zero.")
         return None
 
-    if quantidade > bolo.estoque:
+    if quantidade > quantidade_disponivel:
+
         print(
-            f"Estoque insuficiente. "
-            f"Disponível: {bolo.estoque}"
+            f"Quantidade insuficiente. "
+            f"Disponível: {quantidade_disponivel}"
         )
+
         return None
 
     return quantidade
 
 
 def selecionar_bolo(bolos):
+
     listar_bolos(bolos)
 
-    id_bolo = int(input("\nDigite o número do bolo: "))
+    nome_bolo = input("\nDigite o nome do bolo: ")
 
     for bolo in bolos:
-        if bolo.id == id_bolo:
+
+        if bolo.nome == nome_bolo:
+
             quantidade = definir_quantidade(bolo)
 
             if quantidade is None:
@@ -46,17 +66,23 @@ def selecionar_bolo(bolos):
 
     return None
 
+
 def quantidade_na_venda(itens_venda, bolo):
+
     quantidade = 0
 
     for item in itens_venda:
-        if item.bolo.id == bolo.id:
+
+        if item.bolo.nome == bolo.nome:
             quantidade += item.quantidade
 
     return quantidade
 
+
 def calcular_total(bolo, quantidade):
+
     return bolo.preco * quantidade
+
 
 def realizar_venda(bolos, vendas):
 
@@ -80,18 +106,9 @@ def realizar_venda(bolos, vendas):
                 quantidade_existente + quantidade_venda
             )
 
-            if quantidade_total > bolo_escolhido.estoque:
+            if quantidade_total > quantidade_bolos_possiveis(bolo_escolhido):
 
-                disponivel = (
-                    bolo_escolhido.estoque
-                    - quantidade_existente
-                )
-
-                print(
-                    f"\nEstoque insuficiente para esta venda."
-                    f"\nDisponível: {disponivel}"
-                )
-
+                print("\nQuantidade insuficiente para esta venda.")
                 continue
 
             total = calcular_total(
@@ -151,32 +168,43 @@ def realizar_venda(bolos, vendas):
     if confirmacao == "S":
 
         for item in itens_venda:
-            item.bolo.estoque -= item.quantidade
 
-        venda = Venda(itens_venda)
+            retirar_ingredientes(
+                item.bolo,
+                item.quantidade
+            )
+
+        venda = Venda(
+            itens_venda,
+            total_venda
+        )
 
         vendas.append(venda)
 
         print("\nVenda feita!")
 
     else:
+
         print("\nVenda cancelada.")
-        
-            
 
 
 def menu_caixa(bolos, vendas):
-    escolha =1
+
+    escolha = 1
+
     while escolha != 0:
-        
+
         print("\n\n========== CAIXA ==========")
         print("1 - Realizar nova venda")
         print("0 - Sair")
-        
+
         escolha = int(input("\nEscolha uma opção: "))
-        
+
         if escolha == 1:
+
             realizar_venda(bolos, vendas)
+
         elif escolha == 0:
+
             print("Saindo\n\n")
-           
+

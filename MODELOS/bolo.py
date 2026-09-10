@@ -4,5 +4,8 @@ class Bolo:
         self.nome = nome
         self.preco = preco
         self.estoque = estoque
+    
+    def bom():
+        print("oi")
         
     
