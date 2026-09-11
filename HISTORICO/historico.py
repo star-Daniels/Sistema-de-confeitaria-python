@@ -1,4 +1,5 @@
 from ESTRUTURAS.pilha import Pilha
+from MODELOS.venda import Venda
 
 pilha_vendas = Pilha()
 
@@ -44,7 +45,7 @@ def listar_vendas_por_valor(vendas):
 
         for j in range(i + 1, len(vendas)):
 
-            if vendas[j].preco_total > vendas[maior].preco_total:
+            if vendas[j].total_venda > vendas[maior].total_venda:
                 maior = j
 
         vendas[i], vendas[maior] = vendas[maior], vendas[i]
@@ -52,7 +53,7 @@ def listar_vendas_por_valor(vendas):
     id = 1
 
     for venda in vendas:
-        print(f"{id} - R$ {venda.preco_total:.2f}")
+        print(f"{id} - R$ {venda.total_venda:.2f}")
         id += 1
         
         
