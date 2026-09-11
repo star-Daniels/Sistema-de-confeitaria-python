@@ -1,10 +1,4 @@
-class Item:
-    def __init__(self, nome, quantidade):
-        self.nome = nome
-        self.quantidade = quantidade
-
-    def __str__(self):
-        return f"Nome:{self.nome} & Quantidade:{self.quantidade}"
+from MODELOS.item import Item
 estoque = []
 
 def add_item():
@@ -29,7 +23,7 @@ def listar_estoque():
     for item in estoque:
         print(item)
 
-if __name__ == "__main__":
+def menu_estoque():
     while True:
         opcao = input(" 1-Listar Estoque\n 2-Adcionar item\n 3-Remover Item\n 4-Sair\n")
         match opcao: 

@@ -1,6 +1,6 @@
 from LOGIN.login import cadastrar_user, realizar_login
 from COZINHA.cozinha import menu_cozinha, lista_bolo
-from ESTOQUE.estoque import listar_estoque
+from ESTOQUE.estoque import menu_estoque
 from CAIXA.caixa import menu_caixa
 from HISTORICO.historico import menu_historico
 
@@ -43,7 +43,7 @@ def menu_principal(usuario):
 
             elif escolha == 2:
 
-                listar_estoque()
+                menu_estoque()
 
             elif escolha == 3:
 
