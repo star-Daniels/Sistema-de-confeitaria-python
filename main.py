@@ -33,27 +33,27 @@ def menu_principal(usuario):
             print("2 - Histórico")
             print("0 - Sair")
 
-        escolha = int(input("\nEscolha uma opção: "))
+        escolha = input("\nEscolha uma opção: ")
 
         if usuario.tipo == "ADM":
 
-            if escolha == 1:
+            if escolha == "1":
 
                 menu_cozinha()
 
-            elif escolha == 2:
+            elif escolha == "2":
 
                 menu_estoque()
 
-            elif escolha == 3:
+            elif escolha == "3":
 
                 menu_caixa(lista_bolo, vendas)
 
-            elif escolha == 4:
+            elif escolha == "4":
 
                 menu_historico(vendas)
 
-            elif escolha == 0:
+            elif escolha == "0":
 
                 print("\nSaindo do sistema...")
 
@@ -63,15 +63,15 @@ def menu_principal(usuario):
 
         else:
 
-            if escolha == 1:
+            if escolha == "1":
 
                 menu_caixa(lista_bolo, vendas)
 
-            elif escolha == 2:
+            elif escolha == "2":
 
                 menu_historico(vendas)
 
-            elif escolha == 0:
+            elif escolha == "0":
 
                 print("\nSaindo do sistema...")
 
@@ -80,20 +80,21 @@ def menu_principal(usuario):
                 print("\nOpção inválida.")
 
 
-def menu_login():
 
+def menu_login():
+    
     escolha = 1
 
-    while escolha != 0:
+    while escolha != "0":
 
         print("\n========== SISTEMA DE CONFEITARIA ==========")
         print("1 - Entrar")
         print("2 - Cadastrar usuário")
         print("0 - Sair")
 
-        escolha = int(input("\nEscolha uma opção: "))
+        escolha = input("\nEscolha uma opção: ")
 
-        if escolha == 1:
+        if escolha == "1":
 
             usuario = realizar_login(usuarios)
 
@@ -101,13 +102,15 @@ def menu_login():
 
                 menu_principal(usuario)
 
-        elif escolha == 2:
+        elif escolha == "2":
 
             cadastrar_user(usuarios)
 
-        elif escolha == 0:
+        elif escolha == "0":
 
             print("\nSistema encerrado.")
+            
+           
 
         else:
 

@@ -2,19 +2,19 @@ from MODELOS.item import Item
 estoque = []
 
 def add_item():
-    print(f"Qual item deseja adcionar ao estoque?")
+    print(f"\n\nQual item deseja adcionar ao estoque?")
     nome = input ("Nome:")
     quantidade = int(input("Quantidade:"))
     novo_item = Item(nome, quantidade)
     estoque.append(novo_item)
 
 def remover_item():
-    rem_item = input("Qual item deseja retirar do estoque?")
+    rem_item = input("\n\nQual item deseja retirar do estoque?")
     for item in estoque:
         if item.nome == rem_item:
             estoque.remove(item)
             return
-    print("Item nao encontrado")
+    print("\n\nItem nao encontrado\n\n")
 
 def listar_estoque():
     if not estoque:
@@ -25,12 +25,12 @@ def listar_estoque():
 
 def menu_estoque():
     while True:
-        opcao = input(" 1-Listar Estoque\n 2-Adcionar item\n 3-Remover Item\n 4-Sair\n")
+        opcao = input(" \n\n1-Listar Estoque\n 2-Adcionar item\n 3-Remover Item\n 4-Sair\n")
         match opcao: 
             case "1":
-                print("Abrindo Estoque")   
+                print("\nAbrindo Estoque\n")   
                 listar_estoque()
-                print("Fechando Estoque")
+                print("\nFechando Estoque\n")
             case "2":
                 add_item()
 
@@ -38,9 +38,9 @@ def menu_estoque():
                 remover_item()
 
             case "4":
-                print("Saindo...")
+                print("\n\nSaindo...\n\n")
                 break
 
             case _:
-                print("Opcao invalida")
+                print("\n\nOpcao invalida\n\n")
 
