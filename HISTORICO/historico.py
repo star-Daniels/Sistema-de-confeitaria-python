@@ -12,7 +12,7 @@ def listar_vendas(vendas):
         pilha_vendas.empilhar(venda)
 
     if pilha_vendas.vazia():
-        print("Nenhuma venda registrada.")
+        print("\n\nNenhuma venda registrada.\n\n")
         return
 
     id = 1
@@ -22,7 +22,7 @@ def listar_vendas(vendas):
 
         venda = pilha_vendas.desempilhar()
 
-        print(f"========== VENDA | {id}\n")
+        print(f"\n\n========== VENDA | {id}\n")
 
         for item in venda.itens:
             print(
@@ -84,7 +84,7 @@ def menu_historico(vendas):
         print("1 - Listar Vendas")
         print("2 - Calcular Faturamento")
         print("3 - Total de bolos vendidos")
-        print("0 - Sair")
+        print("0 - Sair\n\n")
         
         escolha = int(input("\nEscolha uma opção: "))
         
@@ -96,5 +96,5 @@ def menu_historico(vendas):
         elif escolha == 3:
             qtd_bolos_vendidos(vendas)
         elif escolha == 0:
-            print("Saindo\n\n")
+            print("\nSaindo\n\n")
            
