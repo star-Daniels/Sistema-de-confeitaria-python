@@ -13,7 +13,7 @@ def menu_principal(usuario):
 
     escolha = 1
 
-    while escolha != 0:
+    while escolha != "0":
 
         print("\n========== MENU PRINCIPAL ==========")
         print(f"Usuário: {usuario.nome}")
@@ -74,6 +74,8 @@ def menu_principal(usuario):
             elif escolha == "0":
 
                 print("\nSaindo do sistema...")
+                menu_login()
+                
 
             else:
 
@@ -83,7 +85,7 @@ def menu_principal(usuario):
 
 def menu_login():
     
-    escolha = 1
+    escolha = "-1"
 
     while escolha != "0":
 
@@ -109,6 +111,7 @@ def menu_login():
         elif escolha == "0":
 
             print("\nSistema encerrado.")
+            break
             
            
 

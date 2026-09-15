@@ -193,7 +193,7 @@ def retirar_ingredientes(bolo, quantidade):
     
             )
             
-def remover_ingrediente(bolo):
+def decrementar_ingrediente(bolo):
     nome = input("Nome do ingrediente: ")
 
     for ingrediente in bolo.ingredientes:
@@ -208,7 +208,7 @@ def remover_ingrediente(bolo):
 def menu_cozinha():
     opcao = ""
     
-    while opcao != "8":
+    while opcao != "0":
     
     
         opcao = input(
@@ -219,7 +219,7 @@ def menu_cozinha():
             "5-Adicionar à fila de produção\n"
             "6-Ver fila de produção\n"
             "7-Produzir próximo bolo\n"
-            "8-Sair\n\n"
+            "0-Sair\n\n"
         )
 
         match opcao:
@@ -247,7 +247,7 @@ def menu_cozinha():
                         "\n\n1-Ver lista de Ingredientes\n"
                         "2-Adicionar Ingredientes\n"
                         "3-Remover Ingredientes\n"
-                        "4-Sair\n\n"
+                        "0-Sair\n\n"
                     )
 
                     match sub_opcao:
@@ -263,9 +263,9 @@ def menu_cozinha():
                             adicionar_ingrediente(bolo)
 
                         case "3":
-                            remover_ingrediente(bolo)
+                            decrementar_ingrediente(bolo)
 
-                        case "4":
+                        case "0":
                             print("Saindo...\n\n")
 
                         case _:
@@ -305,14 +305,14 @@ def menu_cozinha():
 
                         retirar_ingredientes(
                             bolo,
-                            quantidade
+                            1
                         )
 
                         print(
-                            f"\n{quantidade} bolo(s) produzido(s)!\n\n"
+                            "\n1 bolo produzido!\n\n"
                         )
 
-            case "8":
+            case "0":
                 print("Saindo...\n\n")
 
             case _:
