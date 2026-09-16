@@ -1,4 +1,5 @@
 from MODELOS.usuario import Usuario
+import bisect
 
 
 def cadastrar_user(usuarios):
@@ -29,6 +30,8 @@ def cadastrar_user(usuarios):
     novo_user = Usuario(nome, user, senha, tipo)
     
     usuarios.append(novo_user)
+    
+    
     print(f"\nUsuário {nome} cadastrado com sucesso")
     
 def buscar_usuario(usuarios, nome_usuario):
@@ -37,8 +40,6 @@ def buscar_usuario(usuarios, nome_usuario):
             return usuario
 
     return None
-
-
 
 def realizar_login(usuarios):
 
