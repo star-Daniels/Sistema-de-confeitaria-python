@@ -10,13 +10,13 @@ class FilaPrioridade:
         if len(self.itens) == 0:
             return None
 
-        maior = 0
+        menor = 0
 
         for i in range(1, len(self.itens)):
-            if self.itens[i][0] > self.itens[maior][0]:
-                maior = i
+            if self.itens[i][0] < self.itens[menor][0]:
+                menor = i
 
-        return self.itens.pop(maior)
+        return self.itens.pop(menor)
 
     def vazia(self):
         return len(self.itens) == 0

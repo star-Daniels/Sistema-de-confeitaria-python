@@ -193,7 +193,7 @@ def retirar_ingredientes(bolo, quantidade):
     
             )
             
-def remover_ingrediente(bolo):
+def decrementar_ingrediente(bolo):
     nome = input("Nome do ingrediente: ")
 
     for ingrediente in bolo.ingredientes:
@@ -203,12 +203,38 @@ def remover_ingrediente(bolo):
             return
 
     print("Ingrediente não encontrado!\n\n")
+    
+def editar_ingrediente(bolo):
+    
+    escolha = input("Oque deseja alterar \n1-Nome do ingreddiente \n2-Quantidade ingrediente \n0-Sair")
+    
+    if escolha =="0":
+            return -1
+        
+    nome = input("Nome do ingrediente: ")
+    
+    
+    
+    for ingrediente in bolo.ingredientes:
+            if ingrediente.nome == nome:
+                if escolha == "1":
+                    novo_nome = input("Novo nome do ingrediente: ")
+                    ingrediente.nome = novo_nome
+                    print("Novo nome atribuido ao ingrediente\n\n")
+                    return
+                elif escolha =="2":
+                    novo_qtd = int(input("Nova quantidade "))
+                    ingrediente.quantidade = novo_qtd
+                    print("Nova quantidade atribuida ao ingrediente\n\n")
+                    return
+                    
+                
 
 
 def menu_cozinha():
     opcao = ""
     
-    while opcao != "8":
+    while opcao != "0":
     
     
         opcao = input(
@@ -219,7 +245,7 @@ def menu_cozinha():
             "5-Adicionar à fila de produção\n"
             "6-Ver fila de produção\n"
             "7-Produzir próximo bolo\n"
-            "8-Sair\n\n"
+            "0-Sair\n\n"
         )
 
         match opcao:
@@ -242,34 +268,39 @@ def menu_cozinha():
                     print("Bolo nao Encontrado")
 
                 else:
+                    sub_opcao=""
+                    while sub_opcao != "0":
+                        sub_opcao = input(
+                            "\n\n1-Ver lista de Ingredientes\n"
+                            "2-Adicionar Ingredientes\n"
+                            "3-Remover Ingredientes\n"
+                            "4-Editar Ingredientes\n"
+                            "0-Sair\n\n"
+                        )
 
-                    sub_opcao = input(
-                        "\n\n1-Ver lista de Ingredientes\n"
-                        "2-Adicionar Ingredientes\n"
-                        "3-Remover Ingredientes\n"
-                        "4-Sair\n\n"
-                    )
+                        match sub_opcao:
 
-                    match sub_opcao:
+                            case "1":
+                                for ingrediente in bolo.ingredientes:
+                                    print(
+                                        f"Ingrediente: {ingrediente.nome} | "
+                                        f"Quantidade: {ingrediente.quantidade}"
+                                    )
 
-                        case "1":
-                            for ingrediente in bolo.ingredientes:
-                                print(
-                                    f"Ingrediente: {ingrediente.nome} | "
-                                    f"Quantidade: {ingrediente.quantidade}"
-                                )
+                            case "2":
+                                adicionar_ingrediente(bolo)
 
-                        case "2":
-                            adicionar_ingrediente(bolo)
+                            case "3":
+                                decrementar_ingrediente(bolo)
+                            
+                            case "4":
+                                editar_ingrediente(bolo)
 
-                        case "3":
-                            remover_ingrediente(bolo)
+                            case "0":
+                                print("Saindo...\n\n")
 
-                        case "4":
-                            print("Saindo...\n\n")
-
-                        case _:
-                            print("Opcao Invalida\n\n")
+                            case _:
+                                print("Opcao Invalida\n\n")
 
             case "5":
                 adicionar_fila()
@@ -305,14 +336,14 @@ def menu_cozinha():
 
                         retirar_ingredientes(
                             bolo,
-                            quantidade
+                            1
                         )
 
                         print(
-                            f"\n{quantidade} bolo(s) produzido(s)!\n\n"
+                            "\n1 bolo produzido!\n\n"
                         )
 
-            case "8":
+            case "0":
                 print("Saindo...\n\n")
 
             case _:

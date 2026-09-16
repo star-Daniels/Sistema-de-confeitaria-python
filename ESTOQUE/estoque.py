@@ -22,10 +22,37 @@ def listar_estoque():
         return
     for item in estoque:
         print(item)
+        
+def editar_item():
+    if listar_estoque == None:
+        print("Estoque Vazio")
+        return
+    
+    listar_estoque()
+    
+    item_escolhido = input("\nQual item deseja editar\n")
+    
+    for item in estoque:
+        if item.nome == item_escolhido:
+            
+            nova_qtd = int(input("Insira a quantidade"))
+            item.quantidade = item.quantidade + nova_qtd
+
+            print(f"\n{item.nome} recebeu a quantidade {nova_qtd}\n")
+            return 
+    
+    print("\nItem n encontrado\n")
+
 
 def menu_estoque():
     while True:
-        opcao = input(" \n\n1-Listar Estoque\n 2-Adcionar item\n 3-Remover Item\n 4-Sair\n")
+        opcao = input(
+            " \n\n1-Listar Estoque\n"
+            "2-Adcionar item\n"
+            "3-Remover item\n"
+            "4-Editar quantidade item\n"
+            "0-Sair\n"
+            )
         match opcao: 
             case "1":
                 print("\nAbrindo Estoque\n")   
@@ -36,8 +63,11 @@ def menu_estoque():
 
             case "3":
                 remover_item()
-
+            
             case "4":
+                editar_item()
+
+            case "0":
                 print("\n\nSaindo...\n\n")
                 break
 
