@@ -1,3 +1,11 @@
+# Declaração de autoria
+# Autores: [Daniel Santos, Rafael Malta]
+# Declaro que este código foi desenvolvido por mim, com base no meu próprio
+# entendimento e esforço. Não houve plágio ou cópia integral de terceiros.
+# Ferramentas de IA, quando utilizadas, foram apenas como apoio ao aprendizado
+# e não para a geração integral deste código.
+
+
 from LOGIN.login import cadastrar_user, realizar_login
 from COZINHA.cozinha import menu_cozinha, lista_bolo
 from ESTOQUE.estoque import menu_estoque
@@ -121,4 +129,6 @@ def menu_login():
 
 
 menu_login()
+
+
 

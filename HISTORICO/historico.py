@@ -15,14 +15,14 @@ def listar_vendas(vendas):
         print("\n\nNenhuma venda registrada.\n\n")
         return
 
-    id = 1
+    id = 0
     vendas_temporarias = []
 
     while not pilha_vendas.vazia(): #a venda temporaria é so pq se eu desempilhar  meio que vai ficar vazia depois ai eu guardo ela pra depois ainda ter mesmo depoi de desempilhar
-
+        
         venda = pilha_vendas.desempilhar()
 
-        print(f"\n\n========== VENDA | {id}\n")
+        print(f"\n\n========== VENDA | {len(vendas) - id}\n")
 
         for item in venda.itens:
             print(
