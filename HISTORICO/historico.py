@@ -84,6 +84,7 @@ def menu_historico(vendas):
         print("1 - Listar Vendas")
         print("2 - Calcular Faturamento")
         print("3 - Total de bolos vendidos")
+        print("4 - listar Vendas por valor")
         print("0 - Sair\n\n")
         
         escolha = int(input("\nEscolha uma opção: "))
@@ -95,6 +96,8 @@ def menu_historico(vendas):
             
         elif escolha == 3:
             qtd_bolos_vendidos(vendas)
+        elif escolha == 4:
+            listar_vendas_por_valor(vendas)
         elif escolha == 0:
             print("\nSaindo\n\n")
            
