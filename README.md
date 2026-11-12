@@ -680,9 +680,4 @@ O projeto tem como principal objetivo demonstrar na prática a utilização de:
 * Manipulação de dados em memória
 * Organização de um sistema em diferentes módulos
 
-```
 
-Esse README já fica adequado para colocar no GitHub e também deixa claro **onde cada requisito do trabalho foi aplicado**, principalmente Lista, Pilha, Fila de Prioridade, Busca e Selection Sort.
-
-Se quiser, depois podemos fazer uma segunda versão mais "profissional de GitHub", com **badges, instalação, exemplos de uso e screenshots**, mas essa versão acima é melhor para explicar o projeto acadêmico.
-```

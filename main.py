@@ -1,3 +1,11 @@
+# Declaração de autoria
+# Autores: [Daniel Santos, Rafael Malta]
+# Declaro que este código foi desenvolvido por mim, com base no meu próprio
+# entendimento e esforço. Não houve plágio ou cópia integral de terceiros.
+# Ferramentas de IA, quando utilizadas, foram apenas como apoio ao aprendizado
+# e não para a geração integral deste código.
+
+
 from LOGIN.login import cadastrar_user, realizar_login
 from COZINHA.cozinha import menu_cozinha, lista_bolo
 from ESTOQUE.estoque import menu_estoque
@@ -11,7 +19,7 @@ vendas = []
 
 def menu_principal(usuario):
 
-    escolha = 1
+    escolha = ""
 
     while escolha != "0":
 
@@ -60,7 +68,6 @@ def menu_principal(usuario):
             else:
 
                 print("\nOpção inválida.")
-
         else:
 
             if escolha == "1":
@@ -70,13 +77,8 @@ def menu_principal(usuario):
             elif escolha == "2":
 
                 menu_historico(vendas)
-
             elif escolha == "0":
-
                 print("\nSaindo do sistema...")
-                menu_login()
-                
-
             else:
 
                 print("\nOpção inválida.")
@@ -112,13 +114,12 @@ def menu_login():
 
             print("\nSistema encerrado.")
             break
-            
-           
-
         else:
 
             print("\nOpção inválida.")
 
 
 menu_login()
+
+
 

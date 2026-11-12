@@ -1,12 +1,14 @@
+
 from MODELOS.bolo import Bolo
 from MODELOS.item import Item
 from ESTOQUE.estoque import estoque
-
+from ESTRUTURAS.arvore_avl import ArvoreAVL
 from ESTRUTURAS.fila_prioridade import FilaPrioridade
 
 
 fila_producao = FilaPrioridade()
-lista_bolo = []
+lista_bolo = ArvoreAVL()
+id = 1
 
 
 def adicionar_fila():
@@ -23,7 +25,6 @@ def adicionar_fila():
         return
 
     fila_producao.adicionar(bolo, prioridade)
-
     print(f"{bolo.nome} adicionado à fila!\n\n")
 
 
@@ -42,10 +43,15 @@ def ver_fila():
 
 
 def add_bolo():
+    global id
+
     nome = input("Nome:")
 
-    preco = float(input("Preco:"))
+    if lista_bolo.buscar(nome):
+        print("Esse bolo já está cadastrado!")
+        return
 
+    preco = float(input("Preco:"))
     lista_ing = []
 
     while True:
@@ -61,18 +67,16 @@ def add_bolo():
         lista_ing.append(
             Item(ing_nome, ing_qtd)
         )
-        
-    id = len(lista_bolo) + 1
 
     novo_bolo = Bolo(
         id,
         nome,
         preco,
         lista_ing
-        
     )
 
-    lista_bolo.append(novo_bolo)
+    lista_bolo.inserir(novo_bolo)
+    id += 1
 
 
 def remover_bolo():
@@ -80,30 +84,41 @@ def remover_bolo():
         "Qual bolo deseja remover:"
     )
 
-    for bolo in lista_bolo:
-
-        if bolo.nome == rem_bolo:
-
-            lista_bolo.remove(bolo)
-
-            print("Bolo removido\n\n")
-
-            return
-
-    print("Bolo nao encontrado\n\n")
+    if lista_bolo.buscar(rem_bolo):
+        lista_bolo.remover(rem_bolo)
+        print("Bolo removido\n\n")
+    else:
+        print("Bolo nao encontrado\n\n")
 
 
 def listar_bolos():
 
-    if not lista_bolo:
-
+    if not lista_bolo.raiz:
         print("Lista vazia\n\n")
-
         return
 
-    for bolo in lista_bolo:
+    print("\n1 - Em ordem")
+    print("2 - Pré-ordem")
+    print("3 - Pós-ordem")
 
+    escolha = input("Escolha a travessia: ")
+
+    if escolha == "1":
+        bolos = lista_bolo.em_ordem()
+    elif escolha == "2":
+        bolos = lista_bolo.pre_ordem()
+    elif escolha == "3":
+        bolos = lista_bolo.pos_ordem()
+    else:
+        print("Opção inválida")
+        return
+
+    for bolo in bolos:
         print(bolo.nome)
+
+
+def buscar_bolo_por_nome(nome):
+    return lista_bolo.buscar(nome)
 
 
 def buscar_bolo():
@@ -112,24 +127,11 @@ def buscar_bolo():
         "Pesquisar bolo:"
     )
 
-    for bolo in lista_bolo:
-
-        if bolo.nome == nome:
-
-            return bolo
-
-    return None
+    return buscar_bolo_por_nome(nome)
 
 
 def buscar_item(nome):
-
-    for item in estoque:
-
-        if item.nome == nome:
-
-            return item
-
-    return None
+    return estoque.buscar(nome)
 
 
 def quantidade_bolos_possiveis(bolo):
@@ -141,7 +143,6 @@ def quantidade_bolos_possiveis(bolo):
         item = buscar_item(ingrediente.nome)
 
         if item is None:
-
             return 0
 
         quantidade = (
@@ -151,7 +152,6 @@ def quantidade_bolos_possiveis(bolo):
         quantidades.append(quantidade)
 
     if not quantidades:
-
         return 0
 
     menor = quantidades[0]
@@ -159,10 +159,10 @@ def quantidade_bolos_possiveis(bolo):
     for quantidade in quantidades:
 
         if quantidade < menor:
-
             menor = quantidade
 
     return int(menor)
+
 
 def adicionar_ingrediente(bolo):
 
@@ -179,7 +179,7 @@ def adicionar_ingrediente(bolo):
     print("Ingrediente adicionado!")
 
 
-def retirar_ingredientes(bolo, quantidade): 
+def retirar_ingredientes(bolo, quantidade):
 
     for ingrediente in bolo.ingredientes:
 
@@ -189,54 +189,64 @@ def retirar_ingredientes(bolo, quantidade):
 
             item.quantidade -= (
                 ingrediente.quantidade * quantidade
-                
-    
             )
-            
+
+
 def decrementar_ingrediente(bolo):
+
     nome = input("Nome do ingrediente: ")
 
     for ingrediente in bolo.ingredientes:
+
         if ingrediente.nome == nome:
             bolo.ingredientes.remove(ingrediente)
             print("Ingrediente removido!\n\n")
             return
 
     print("Ingrediente não encontrado!\n\n")
-    
+
+
 def editar_ingrediente(bolo):
-    
-    escolha = input("Oque deseja alterar \n1-Nome do ingreddiente \n2-Quantidade ingrediente \n0-Sair")
-    
-    if escolha =="0":
-            return -1
-        
+
+    escolha = input(
+        "Oque deseja alterar \n"
+        "1-Nome do ingrediente \n"
+        "2-Quantidade ingrediente \n"
+        "0-Sair"
+    )
+
+    if escolha == "0":
+        return -1
+
     nome = input("Nome do ingrediente: ")
-    
-    
-    
+
     for ingrediente in bolo.ingredientes:
-            if ingrediente.nome == nome:
-                if escolha == "1":
-                    novo_nome = input("Novo nome do ingrediente: ")
-                    ingrediente.nome = novo_nome
-                    print("Novo nome atribuido ao ingrediente\n\n")
-                    return
-                elif escolha =="2":
-                    novo_qtd = int(input("Nova quantidade "))
-                    ingrediente.quantidade = novo_qtd
-                    print("Nova quantidade atribuida ao ingrediente\n\n")
-                    return
-                    
-                
+
+        if ingrediente.nome == nome:
+
+            if escolha == "1":
+
+                novo_nome = input("Novo nome do ingrediente: ")
+                ingrediente.nome = novo_nome
+
+                print("Novo nome atribuido ao ingrediente\n\n")
+                return
+
+            elif escolha == "2":
+
+                novo_qtd = float(input("Nova quantidade "))
+                ingrediente.quantidade = novo_qtd
+
+                print("Nova quantidade atribuida ao ingrediente\n\n")
+                return
 
 
 def menu_cozinha():
+
     opcao = ""
-    
+
     while opcao != "0":
-    
-    
+
         opcao = input(
             "\n\n1-Listar Bolos\n"
             "2-Adicionar Bolo\n"
@@ -264,12 +274,13 @@ def menu_cozinha():
                 bolo = buscar_bolo()
 
                 if not bolo:
-
                     print("Bolo nao Encontrado")
 
                 else:
-                    sub_opcao=""
+                    sub_opcao = ""
+
                     while sub_opcao != "0":
+
                         sub_opcao = input(
                             "\n\n1-Ver lista de Ingredientes\n"
                             "2-Adicionar Ingredientes\n"
@@ -292,7 +303,7 @@ def menu_cozinha():
 
                             case "3":
                                 decrementar_ingrediente(bolo)
-                            
+
                             case "4":
                                 editar_ingrediente(bolo)
 
@@ -311,11 +322,9 @@ def menu_cozinha():
             case "7":
 
                 if fila_producao.vazia():
-
                     print("\nNão há bolos na fila.\n\n")
 
                 else:
-
                     prioridade, bolo = fila_producao.remover()
 
                     print(
@@ -326,14 +335,12 @@ def menu_cozinha():
                     quantidade = quantidade_bolos_possiveis(bolo)
 
                     if quantidade == 0:
-
                         print(
                             "\nNão há ingredientes suficientes "
                             "para produzir esse bolo.\n\n"
                         )
 
                     else:
-
                         retirar_ingredientes(
                             bolo,
                             1

@@ -1,6 +1,4 @@
 from MODELOS.usuario import Usuario
-import bisect
-
 
 def cadastrar_user(usuarios):
     print("\n====Cadastro====\n\n")
