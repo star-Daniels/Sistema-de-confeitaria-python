@@ -61,11 +61,10 @@ def listar_vendas_por_valor(vendas):
     
         
 def calcular_faturamento(vendas):
-    total_vendas=0
     for venda in vendas:
         for item in venda.itens:
-          total_vendas += item.total  
-        
+            total_vendas += item.total
+
     print(f"\nValor total : {total_vendas} \n")
 
 def qtd_bolos_vendidos(vendas):
@@ -79,14 +78,13 @@ def qtd_bolos_vendidos(vendas):
     print(f"Quantidade total de bolos vendidos : {total_bolos_vendidos} \n")
 
 def menu_historico(vendas):
-    escolha =1
     while escolha != 0:
         
         print("\n\n========== HISTORICO ==========")
         print("1 - Listar Vendas")
         print("2 - Calcular Faturamento")
         print("3 - Total de bolos vendidos")
-        print("4 - listar Vendas por valor")
+        print("4 - Listar Vendas por valor")
         print("0 - Sair\n\n")
         
         escolha = int(input("\nEscolha uma opção: "))
