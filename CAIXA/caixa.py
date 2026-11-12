@@ -2,6 +2,7 @@
 from MODELOS.venda import Venda
 from MODELOS.item_venda import ItemVenda
 from COZINHA.cozinha import quantidade_bolos_possiveis, retirar_ingredientes
+import HISTORICO.historico as historico
 
 
 def listar_bolos(bolos):
@@ -178,6 +179,7 @@ def realizar_venda(bolos, vendas):
         )
 
         vendas.append(venda)
+        historico.vendas_organizadas = False
 
         print("\nVenda feita!")
 
