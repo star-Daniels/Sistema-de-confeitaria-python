@@ -2,14 +2,14 @@
 from MODELOS.venda import Venda
 from MODELOS.item_venda import ItemVenda
 from COZINHA.cozinha import quantidade_bolos_possiveis, retirar_ingredientes
+import HISTORICO.historico as historico
 
 
 def listar_bolos(bolos):
 
     print("\nBolos disponíveis\n")
 
-    for bolo in bolos:
-
+    for bolo in bolos.em_ordem():
         quantidade = quantidade_bolos_possiveis(bolo)
 
         print(
@@ -53,16 +53,15 @@ def selecionar_bolo(bolos):
 
     nome_bolo = input("\nDigite o nome do bolo: ")
 
-    for bolo in bolos:
+    bolo = bolos.buscar(nome_bolo)
 
-        if bolo.nome == nome_bolo:
+    if bolo:
+        quantidade = definir_quantidade(bolo)
 
-            quantidade = definir_quantidade(bolo)
+        if quantidade is None:
+            return None
 
-            if quantidade is None:
-                return None
-
-            return bolo, quantidade
+        return bolo, quantidade
 
     return None
 
@@ -180,6 +179,7 @@ def realizar_venda(bolos, vendas):
         )
 
         vendas.append(venda)
+        historico.vendas_organizadas = False
 
         print("\nVenda feita!")
 

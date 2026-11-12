@@ -1,47 +1,52 @@
 from MODELOS.item import Item
-estoque = []
+from ESTRUTURAS.tabela_hash import TabelaHash
+
+estoque = TabelaHash()
 
 def add_item():
     print(f"\n\nQual item deseja adcionar ao estoque?")
     nome = input ("Nome:")
     quantidade = int(input("Quantidade:"))
     novo_item = Item(nome, quantidade)
-    estoque.append(novo_item)
+    
+    if estoque.inserir(novo_item):
+        print("\nitem cadastrado\n")
+    else:
+        print("\nEsse item ja esta no estoque\n")
+    
 
 def remover_item():
     rem_item = input("\n\nQual item deseja retirar do estoque?")
-    for item in estoque:
-        if item.nome == rem_item:
-            estoque.remove(item)
-            return
-    print("\n\nItem nao encontrado\n\n")
+    
+    if estoque.remover(rem_item):
+        print("Item removido!")
+    else:
+        print("Item não encontrado!")
 
 def listar_estoque():
-    if not estoque:
-        print("Estoque Vazio")
+    itens = estoque.listar()
+
+    if not itens:
+        print("Estoque vazio!")
         return
-    for item in estoque:
-        print(item)
+
+    for item in itens:
+        print(f"Nome: {item.nome} | Quantidade: {item.quantidade}")
         
 def editar_item():
-    if listar_estoque == None:
-        print("Estoque Vazio")
+    item_escolhido = input("\nQual item deseja editar\n")
+    item = estoque.buscar(item_escolhido)
+    
+    if item is None:
+        print("Item não encontrado!")
         return
     
-    listar_estoque()
+    nova_qtd  = int(input("Quantidade para adicionar: "))
+     
+    item.quantidade += nova_qtd
+    print("Estoque atualizado!")
     
-    item_escolhido = input("\nQual item deseja editar\n")
-    
-    for item in estoque:
-        if item.nome == item_escolhido:
-            
-            nova_qtd = int(input("Insira a quantidade"))
-            item.quantidade = item.quantidade + nova_qtd
-
-            print(f"\n{item.nome} recebeu a quantidade {nova_qtd}\n")
-            return 
-    
-    print("\nItem n encontrado\n")
+   
 
 
 def menu_estoque():

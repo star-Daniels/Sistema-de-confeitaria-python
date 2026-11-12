@@ -19,7 +19,7 @@ vendas = []
 
 def menu_principal(usuario):
 
-    escolha = 1
+    escolha = ""
 
     while escolha != "0":
 
@@ -68,7 +68,6 @@ def menu_principal(usuario):
             else:
 
                 print("\nOpção inválida.")
-
         else:
 
             if escolha == "1":
@@ -78,13 +77,8 @@ def menu_principal(usuario):
             elif escolha == "2":
 
                 menu_historico(vendas)
-
             elif escolha == "0":
-
                 print("\nSaindo do sistema...")
-                menu_login()
-                
-
             else:
 
                 print("\nOpção inválida.")
@@ -120,9 +114,6 @@ def menu_login():
 
             print("\nSistema encerrado.")
             break
-            
-           
-
         else:
 
             print("\nOpção inválida.")
