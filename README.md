@@ -79,3 +79,7 @@ python main.py
 ```
 
 O sistema abre no menu de login.
+
+Desenvolvido por:
+-> Daniel Santos
+-> Rafael Malta
